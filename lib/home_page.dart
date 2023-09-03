@@ -1,3 +1,4 @@
+import 'package:begin/app_controller.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,23 +15,17 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: const Text('Home Page'),
       ),
       body: Center(
-        child: GestureDetector(
-          child: Text(
-            'Quantas vezes clicou? = ${counter}',
-            style: TextStyle(fontSize: 30.0),
-          ),
-          onTap: () {
-            setState(() {
-              counter++;
-            });
-          },
-        ),
+        child: Switch(
+            value: AppController.instance.isDarkTheme,
+            onChanged: (value) {
+              AppController.instance.changeTheme();
+            }),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           setState(() {
             counter++;
